@@ -21,7 +21,6 @@ with st.form("my_form"):
 
     else:
         st.warning('입력해주세요!', icon="⚠️")
-        print("hello")
 
 
     
