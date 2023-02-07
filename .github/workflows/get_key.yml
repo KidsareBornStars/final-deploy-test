@@ -7,7 +7,7 @@ on:
         - 'frontend/**'
 
 env:
-  API_KEY: ${{ env.API_KEY }}
+  API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
   build:
