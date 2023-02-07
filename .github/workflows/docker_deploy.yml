@@ -12,7 +12,7 @@ env:
   GCE_INSTANCE: "instance-1"
   GCE_INSTANCE_ZONE: "asia-northeast3-a"
   GOOGLE_CLOUD_KEY: "final-deploy-test/level-dragon-376304-a6bd74583cf5.json"
-  CLOUDSDK_PYTHON: python3.7
+  CLOUDSDK_PYTHON: python3
 
 jobs:
   setup-build-publish-deploy:
