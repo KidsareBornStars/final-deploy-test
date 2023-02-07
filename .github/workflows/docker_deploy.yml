@@ -30,8 +30,8 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
 
     # gcloud에서 Docker 사용할 수 있도록 설정
-    - run: |-
-        gcloud auth configure-docker
+    # - run: |-
+    #     gcloud auth configure-docker
 
     # Docker Image Build
     - name: Build
