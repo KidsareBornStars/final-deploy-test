@@ -14,6 +14,21 @@ env:
 
 
 jobs:
+  Retrieve Google API Key:
+    - name: Retrieve Google API Key
+      run: |-
+        API_KEY=$(curl -s http://101.101.208.94/api-key)
+        echo "::set-env name=API_KEY::$API_KEY"
+  
+  Use Google API Key:
+   - name: Use Google API Key
+     run: |-
+        wget -O secret_key.txt \
+         --header "Authorization: Bearer ${{ env.API_KEY }}" \
+         https://www.googleapis.com/drive/v3/files/1s5YdmW8ImZFAjAACizMKkB_FYTYa3chs?alt=media
+      
+
+
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
