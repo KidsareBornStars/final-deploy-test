@@ -12,13 +12,13 @@ env:
   GCE_INSTANCE: "instance-1"
   GCE_INSTANCE_ZONE: "asia-northeast3-a"
   GOOGLE_CLOUD_KEY: "final-deploy-test/level-dragon-376304-a6bd74583cf5.json"
-
+  CLOUDSDK_PYTHON: python3.7
 
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -29,6 +29,7 @@ jobs:
         version: '330.0.0'
         service_account_key: ${{ env.GOOGLE_CLOUD_KEY }}
         project_id: ${{ env.PROJECT_ID }}
+      
 
     # gcloud에서 Docker 사용할 수 있도록 설정
     - run: |-
