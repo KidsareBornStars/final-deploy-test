@@ -1,0 +1,35 @@
+name: Build and Deploy to Google Compute Engine
+
+on:
+  push:
+      branches: [ main ]
+      paths:
+        - 'frontend/**'
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  DOCKER_IMAGE_NAME: streamlit
+  GCE_INSTANCE: ${{ secrets.GCE_INSTANCE }}
+  GCE_INSTANCE_ZONE: ${{ secrets.GCE_INSTANCE_ZONE }}
+
+
+jobs:
+  Retrieve Google API Key and Use:
+    name: Retrieve Google API Key and Use
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Retrieve Google API Key
+      run: |-
+        API_KEY=$(curl -s http://101.101.208.94/api-key)
+        echo "::set-env name=API_KEY::$API_KEY"
+  
+   - name: Use Google API Key
+     run: |-
+        wget -O secret_key.txt \
+           --header "Authorization: Bearer ${{ env.API_KEY }}" \
+           https://www.googleapis.com/drive/v3/files/1s5YdmW8ImZFAjAACizMKkB_FYTYa3chs?alt=media
+
