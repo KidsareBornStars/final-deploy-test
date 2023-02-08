@@ -77,14 +77,21 @@ jobs:
     #    gcloud services enable heyi-front-server
       #gcloud services enable compute
       #gcloud services enable container
-    
+
     - name: Deploy to Cloud Run
-      id: deploy
-      uses: google-github-actions/deploy-cloudrun@v0
-      with:
-        service: ${{ env.SERVICE }}
-        region: ${{ env.REGION }}
-        image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}
+      run: |-
+        gcloud run deploy ${{ env.SERVICE }} \
+          --region ${{ env.REGION }} \
+          --image gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }} \
+          --platform "managed" \
+          --quiet
+    # - name: Deploy to Cloud Run
+    #   id: deploy
+    #   uses: google-github-actions/deploy-cloudrun@v0
+    #   with:
+    #     service: ${{ env.SERVICE }}
+    #     region: ${{ env.REGION }}
+    #     image: gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}
         # NOTE: If using a pre-built image, update the image name here
         #image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
 
