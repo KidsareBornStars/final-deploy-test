@@ -30,7 +30,7 @@ env:
   POOL_NAME: test
   PROVIDERS: AWS
   PROVIDER_ID: nicolasc
-  
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
       uses: 'google-github-actions/auth@v1'
       with:
         workload_identity_provider: ${{ env.PROJECT_ID }}/${{ env.PROJECT_NUM }}/${{ env.ZONE }}/${{ env.REGION }}/workloadIdentityPools/${{ env.POOL_NAME }}/${{ env.PROVIDERS }}/${{ env.PROVIDER_ID }}     # 'heyi-front/629298042516/asia-northeast3-a/global/workloadIdentityPools/my-pool/providers/my-provider' 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider' 
-        service_account: ${{ env.SERVICE_ACCOUNT }} #'my-service-account@my-project.iam.gserviceaccount.com'
+        service_account: 'yj-479@level-dragon-376304.iam.gserviceaccount.com' #'my-service-account@my-project.iam.gserviceaccount.com'
 
     # # Alternative option - authentication via credentials json
     # - id: 'auth'
