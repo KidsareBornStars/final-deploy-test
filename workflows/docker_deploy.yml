@@ -7,16 +7,18 @@ on:
         - 'frontend/**'
 
 env:
-  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  PROJECT_ID: "My First Project"
   DOCKER_IMAGE_NAME: streamlit
-  GCE_INSTANCE: ${{ secrets.GCE_INSTANCE }}
-  GCE_INSTANCE_ZONE: ${{ secrets.GCE_INSTANCE_ZONE }}
+  GCE_INSTANCE: "instance-1"
+  GCE_INSTANCE_ZONE: "asia-northeast3-a"
+  GOOGLE_CLOUD_KEY: "final-deploy-test/level-dragon-376304-a6bd74583cf5.json"
+  CLOUDSDK_PYTHON: python3
 
 jobs:
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -24,9 +26,10 @@ jobs:
     # gcloud CLI 설정
     - uses: google-github-actions/setup-gcloud@v0
       with:
-        version: '290.0.1'
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        version: '330.0.0'
+        service_account_key: ${{ env.GOOGLE_CLOUD_KEY }}
+        project_id: ${{ env.PROJECT_ID }}
+      
 
     # gcloud에서 Docker 사용할 수 있도록 설정
     - run: |-
